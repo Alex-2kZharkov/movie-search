@@ -1,14 +1,16 @@
 import React from 'react';
 import '../App.css';
-const ScrollButtons = ({ moviesContainerRef }) => {
+const ScrollButtons = ({ moviesContainerRef, scrollButtonsOffset }) => {
 	return (
 		<>
 			<button
+				style={scrollButtonsOffset}
 				type="button"
 				className="arrow arrow-left"
 				onClick={() => (moviesContainerRef.current.scrollLeft -= window.innerWidth)}
 			/>
 			<button
+				style={scrollButtonsOffset}
 				type="button"
 				className="arrow arrow-right"
 				onClick={() => (moviesContainerRef.current.scrollLeft += window.innerWidth)}

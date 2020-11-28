@@ -144,6 +144,7 @@ body {
 .arrow:hover {
   cursor: pointer;
 }
+
 .arrow:focus {
   outline: none;
 }
@@ -155,8 +156,11 @@ body {
   width: 50px;
   height: 8px;
   background-color: #ffffff;
+  transition: 0.2s ease-in-out box-shadow;
 }
-
+.arrow:hover::after, .arrow:hover::before {
+  box-shadow: 5px 0px 10px 5px  #ffffff;
+}
 .arrow::after {
   bottom: 45px;
   left: 5px;
@@ -173,16 +177,19 @@ body {
 }
 .arrow-right {
   right: 0px;
-  
 }
 .arrow-right::before {
   left: 25px;
   transform: rotate(45deg);
-  
+
+  transition: 0.2s ease-in-out box-shadow;
 }
 .arrow-right::after {
   left: 25px;
   transform: rotate(-45deg);
-  
+  transition: 0.2s ease-in-out box-shadow;
 }
+ .arrow-right:hover::before, .arrow-right:hover::after{
+    box-shadow: -5px 0px 10px 5px  #ffffff;
+} 
 
