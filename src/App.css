@@ -11,16 +11,21 @@ body {
   align-items: center;
   padding-left: 10px;
   padding-right: 10px;
-  margin-top: 10px;
+  margin-top: 20px;
   margin-bottom: 20px;
 }
-.main-title, .no-movie-msg {
+
+.main-title, .movie-msg {
+  margin-bottom: 0;
+  margin-top: 0px;
   font-size: 30px;
   font-family: Roboto;
   color: #ffffff;
 }
-.no-movie-msg {
+.movie-msg {
+  margin-bottom: 5px;
   font-size: 24px;
+  
 }
 .search-box {
   display: flex;
@@ -44,16 +49,70 @@ body {
 .search-field:focus {
   outline: none;
 }
+.wrapper {
+  z-index: 1;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+}
 .movies-container {
   position: relative;
+  z-index: 5;
   display: flex;
   justify-content: start;
   align-content: center;
+  min-height: 400px;
+  max-height: 420px;
+  pointer-events: all;
  
 }
 .movie-container {
+  position: relative;
   min-width: 200px;
+  max-width: 200px;
   margin-right: 20px;
+  transition: transform 0.2s ease-in-out;
+}
+.movie-container:hover {
+  cursor: pointer;
+  transform: scale(1.2) translateY(8%);
+}
+.movie-container:hover .overlay {
+  opacity: 1;
+  pointer-events: all;
+}
+.overlay {
+  position: absolute;
+  bottom: 20%;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 15%;
+  border: none;
+  font-size: 14px;
+  font-family: Roboto;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #ffffff;
+  cursor: pointer;
+}
+.overlay:focus {
+  outline: none;
+}
+
+.remove-favourites {
+  position: relative;
+}
+.icon, .remove-icon {
+  position: relative;
+  top: 5px;
+}
+.icon {
+  font-size: 20px;
+  top: 3px;
 }
 .movie-container:last-child {
   margin-right: 0;
@@ -62,6 +121,7 @@ body {
   display: block;
   width: 100%;
   height: auto;
+  min-height: 320px;
 
 }
 ::-webkit-scrollbar {
@@ -69,19 +129,25 @@ body {
 }
 
 .app-container > .movies-container {
-  scroll-behavior: smooth;
-  overflow-x: scroll;
 	flex-wrap: nowrap;
 }
 .arrow {
   position: fixed;
-  top: 20%;
+  top: 23%;
   width: 80px;
   height: 120px;
   border: none;
   background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.9) 100%);
+  pointer-events: all;
 
 }
+.arrow:hover {
+  cursor: pointer;
+}
+.arrow:focus {
+  outline: none;
+}
+
 .arrow::after, .arrow::before {
   position: absolute;
   content: "";
@@ -90,12 +156,7 @@ body {
   height: 8px;
   background-color: #ffffff;
 }
-.arrow:hover {
-  cursor: pointer;
-}
-.arrow:focus {
-  outline: none;
-}
+
 .arrow::after {
   bottom: 45px;
   left: 5px;
@@ -111,11 +172,17 @@ body {
   background: linear-gradient(to left, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 0.8) 100%);
 }
 .arrow-right {
-  right: 0;
+  right: 0px;
+  
 }
 .arrow-right::before {
+  left: 25px;
   transform: rotate(45deg);
+  
 }
 .arrow-right::after {
+  left: 25px;
   transform: rotate(-45deg);
+  
 }
+
