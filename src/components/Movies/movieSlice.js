@@ -1,10 +1,11 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { APPLICATION_STATUSES } from "../../utils/constants";
 
 const { createSlice } = require("@reduxjs/toolkit");
 const initialState = {
   movies: [],
-  status: "idle",
+  status: APPLICATION_STATUSES.initial,
   error: null,
 };
 
@@ -14,7 +15,7 @@ const movieSlice = createSlice({
   reducers: {},
 });
 
-export const fetchMovies = createAsyncThunk("posts/fetchPosts", async () => {
+export const fetchMovies = createAsyncThunk("movies/fetchMovies", async () => {
   try {
     const response = await axios.get(
       `http://www.omdbapi.com/?s=&apikey=21f59099`
