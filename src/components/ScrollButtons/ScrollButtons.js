@@ -1,5 +1,5 @@
 import React from "react";
-import "../app/App.css";
+import "../../app/App.css";
 const ScrollButtons = ({ moviesContainerRef, scrollButtonsOffset }) => {
   return (
     <>
