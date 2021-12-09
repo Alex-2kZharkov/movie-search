@@ -1,34 +1,15 @@
 import "./App.css";
 import { useState, useEffect, useRef } from "react";
-import MovieList from "./components/Movies/MovieList";
+import MovieList from "../components/Movies/MovieList";
 import axios from "axios";
-import ScrollButtons from "./components/ScrollButtons";
-import Favourites from "./components/Favourites";
-import RemoveFavourites from "./components/RemoveFavourites";
+import ScrollButtons from "../components/ScrollButtons";
+import RemoveFavourites from "../components/RemoveFavourites";
 
 const App = () => {
-  const [movies, setMovies] = useState([]);
-  const moviesContainer = useRef(null);
   const favouritesMoviesContainer = useRef(null);
   const [isNoResult, setIsNoResults] = useState(true);
   const [favouritesMovies, setFavouriteMovie] = useState([]);
   const [scrollButtonsOffset, setScrollButtonsOffset] = useState({});
-
-  const getRequestedMovies = () => {
-    axios
-      .get(`http://www.omdbapi.com/?s=${searchValue}&apikey=21f59099`)
-      .then((response) => {
-        if (response.data.Search) {
-          setMovies(response.data.Search);
-          setIsNoResults(false);
-          setScrollButtonsOffset({ top: "70%" });
-        } else {
-          setIsNoResults(true);
-          setScrollButtonsOffset({ top: "23%" });
-        }
-      })
-      .catch((error) => console.log(error));
-  };
 
   const saveToLocalStorage = (items) => {
     window.localStorage.setItem(
@@ -53,7 +34,7 @@ const App = () => {
     setFavouriteMovie(movies);
     saveToLocalStorage(movies);
   };
-  useEffect(getRequestedMovies, [searchValue]);
+  // useEffect(getRequestedMovies, [searchValue]);
 
   useEffect(() => {
     const favMovies = JSON.parse(
@@ -67,9 +48,9 @@ const App = () => {
       <header className="app-header">
         <h1 className="main-title">Movies</h1>
       </header>{" "}
-      {isNoResult && searchValue !== "" ? (
-        <h2 className="movie-msg">No movies were found</h2>
-      ) : null}
+      {/*{isNoResult && searchValue !== "" ? (*/}
+      {/*  <h2 className="movie-msg">No movies were found</h2>*/}
+      {/*) : null}*/}
       {/*{!isNoResult && searchValue !== "" ? (*/}
       {/*  */}
       {/*) : null}*/}
