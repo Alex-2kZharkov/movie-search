@@ -1,10 +1,10 @@
 import './App.css';
 import { useState, useEffect, useRef } from 'react';
-import MovieList from './Components/MovieList';
+import MovieList from './components/MovieList';
 import axios from 'axios';
-import ScrollButtons from './Components/ScrollButtons';
-import Favourites from './Components/Favourites';
-import RemoveFavourites from './Components/RemoveFavourites';
+import ScrollButtons from './components/ScrollButtons';
+import Favourites from './components/Favourites';
+import RemoveFavourites from './components/RemoveFavourites';
 
 const App = () => {
 	const [ movies, setMovies ] = useState([]);
