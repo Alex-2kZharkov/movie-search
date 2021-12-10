@@ -17,8 +17,17 @@ const MoviesContainer = () => {
   const moviesSearchStatus = useSelector((state) => state.movies.status);
 
   useEffect(() => {
-    dispatch(fetchMovies(searchedMovie));
+    if (searchedMovie.length) {
+      dispatch(fetchMovies(searchedMovie));
+    }
   }, [searchedMovie, dispatch]);
+
+  const searchResults =
+    movies.length > 0 ? (
+      <MovieList movies={movies} favourites={FavoriteMovieLabel} />
+    ) : (
+      <h2 className="movie-msg">{movies.length} movies were found:</h2>
+    );
 
   return (
     <div>
@@ -27,14 +36,11 @@ const MoviesContainer = () => {
         <SearchMovie value={searchedMovie} handler={onSearchedMovieChange} />
       </header>{" "}
       {moviesSearchStatus !== APPLICATION_STATUSES.initial && (
-        <div>
-          <div className="wrapper">
-            {/*ref={moviesContainer}*/}
-            <div className="movies-container">
-              <h2 className="movie-msg">{movies.length} movies were found:</h2>
-              <MovieList movies={movies} favourites={FavoriteMovieLabel} />
-              {/*<ScrollButtons moviesContainerRef={moviesContainer} />*/}
-            </div>
+        <div className="wrapper">
+          {/*ref={moviesContainer}*/}
+          <div className="movies-container">
+            {searchResults}
+            {/*<ScrollButtons moviesContainerRef={moviesContainer} />*/}
           </div>
         </div>
       )}

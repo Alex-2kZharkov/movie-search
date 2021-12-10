@@ -30,7 +30,7 @@ const movieSlice = createSlice({
         state.movies = action.payload;
       })
       .addCase(fetchMovies.rejected, (state, action) => {
-        state.status = "failed";
+        state.status = APPLICATION_STATUSES.failed;
         state.error = action.error.message;
       });
   },

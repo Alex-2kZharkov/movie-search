@@ -53,8 +53,8 @@ body {
 .wrapper {
   z-index: 1;
   overflow-x: scroll;
-  overflow-y: hidden;
   scroll-behavior: smooth;
+  min-height: 700px;
 }
 .movies-container {
   position: relative;
@@ -74,9 +74,33 @@ body {
   margin-right: 20px;
   transition: transform 0.2s ease-in-out;
 }
+.movie-information {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+.movie-information__year {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.movie-information__title {
+  margin-top: 0.5rem;
+  font-size: 1.15rem;
+  text-align: center;
+}
 .movie-container:hover {
   cursor: pointer;
-  transform: scale(1.2) translateY(8%);
+  transform: scale(1.7) translateY(13%);
+  transition: transform 0.25s ease-out;
+  z-index: 1000;
+}
+.movie-container:first-child:hover {
+  transform: scale(1.7) translate(20%, 13%);
+}
+.movie-container:last-child:hover {
+  transform: scale(1.7) translate(-20%, 13%);
 }
 .movie-container:hover .overlay {
   opacity: 1;

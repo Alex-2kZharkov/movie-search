@@ -11,6 +11,10 @@ const MovieList = ({ movies, favourites }) => {
         <button className="overlay">
           <Favourites />
         </button>
+        <div className="movie-information">
+          <div className="movie-information__year">{movie.Year}</div>
+          <div className="movie-information__title">{movie.Title}</div>
+        </div>
       </div>
     );
   });
