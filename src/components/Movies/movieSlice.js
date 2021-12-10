@@ -9,23 +9,31 @@ const initialState = {
   error: null,
 };
 
+export const fetchMovies = createAsyncThunk(
+  "movies/fetchMovies",
+  async (movieName) => {
+    const response = await axios.get(
+      `http://www.omdbapi.com/?s=${movieName}&apikey=21f59099`
+    );
+    return response.data.Search ?? [];
+  }
+);
+
 const movieSlice = createSlice({
   name: "movies",
   initialState,
   reducers: {},
-});
-
-export const fetchMovies = createAsyncThunk("movies/fetchMovies", async () => {
-  try {
-    const response = await axios.get(
-      `http://www.omdbapi.com/?s=&apikey=21f59099`
-    );
-    return response.data.Search || [];
-  } catch (error) {
-    console.log(error);
-  } finally {
-    return [];
-  }
+  extraReducers(builder) {
+    builder
+      .addCase(fetchMovies.fulfilled, (state, action) => {
+        state.status = APPLICATION_STATUSES.succeeded;
+        state.movies = action.payload;
+      })
+      .addCase(fetchMovies.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      });
+  },
 });
 
 export default movieSlice.reducer;

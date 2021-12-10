@@ -1,14 +1,10 @@
-import { useState } from "react";
-
-const SearchMovie = ({}) => {
-  const [searchValue, setSearchValue] = useState("");
-
+const SearchMovie = ({ value, handler }) => {
   return (
     <div className="search-box">
       <input
         className="search-field"
-        value={searchValue}
-        onChange={(event) => setSearchValue(event.target.value)}
+        value={value}
+        onChange={handler}
         placeholder="Type to search"
       />
     </div>

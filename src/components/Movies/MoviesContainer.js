@@ -4,18 +4,27 @@ import MovieList from "./MovieList";
 import SearchMovie from "./SearchMovie";
 import { useDispatch, useSelector } from "react-redux";
 import { APPLICATION_STATUSES } from "../../utils/constants";
+import { useEffect, useState } from "react";
+import { fetchMovies } from "./movieSlice";
 
 const MoviesContainer = () => {
+  const [searchedMovie, setSearchedMovie] = useState("");
+  const onSearchedMovieChange = (e) => setSearchedMovie(e.target.value);
+
   const dispatch = useDispatch();
+
   const movies = useSelector((state) => state.movies.movies);
   const moviesSearchStatus = useSelector((state) => state.movies.status);
 
-  console.log(movies);
+  useEffect(() => {
+    dispatch(fetchMovies(searchedMovie));
+  }, [searchedMovie, dispatch]);
+
   return (
     <div>
       <header className="app-header">
         <h1 className="main-title">Movies</h1>
-        <SearchMovie />
+        <SearchMovie value={searchedMovie} handler={onSearchedMovieChange} />
       </header>{" "}
       {moviesSearchStatus !== APPLICATION_STATUSES.initial && (
         <div>
