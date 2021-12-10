@@ -23,6 +23,10 @@ body {
   font-family: Roboto;
   color: #ffffff;
 }
+.favourite-movies-title {
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+}
 .movie-msg {
   margin-bottom: 5px;
   font-size: 24px;
@@ -54,7 +58,7 @@ body {
   z-index: 1;
   overflow-x: scroll;
   scroll-behavior: smooth;
-  min-height: 700px;
+  min-height: 450px;
 }
 .movies-container {
   position: relative;
@@ -92,15 +96,15 @@ body {
 }
 .movie-container:hover {
   cursor: pointer;
-  transform: scale(1.7) translateY(13%);
+  transform: scale(1.5) translateY(13%);
   transition: transform 0.25s ease-out;
   z-index: 1000;
 }
 .movie-container:first-child:hover {
-  transform: scale(1.7) translate(20%, 13%);
+  transform: scale(1.5) translate(20%, 13%);
 }
 .movie-container:last-child:hover {
-  transform: scale(1.7) translate(-20%, 13%);
+  transform: scale(1.5) translate(-20%, 13%);
 }
 .movie-container:hover .overlay {
   opacity: 1;

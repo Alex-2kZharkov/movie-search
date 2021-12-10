@@ -4,11 +4,13 @@ import FavoriteMoviesContainer from "../components/FavoriteMovies/FavoriteMovies
 import { useSelector } from "react-redux";
 
 const App = () => {
-  const favouriteMovies = useSelector((state) => state.favouriteMovies);
+  const favouriteMoviesLength = useSelector(
+    (state) => state.favouriteMovies.length
+  );
   return (
     <div className="app-container">
       <MoviesContainer />
-      {Boolean(favouriteMovies.length) && <FavoriteMoviesContainer />}
+      {Boolean(favouriteMoviesLength) && <FavoriteMoviesContainer />}
     </div>
   );
 };
