@@ -1,5 +1,4 @@
 import FavoriteMovieLabel from "../FavoriteMovies/FavoriteMovieLabel";
-import ScrollButtons from "../ScrollButtons/ScrollButtons";
 import MovieList from "./MovieList";
 import SearchMovie from "./SearchMovie";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,6 +13,7 @@ const MoviesContainer = () => {
   const dispatch = useDispatch();
 
   const movies = useSelector((state) => state.movies.movies);
+  const favouriteMovies = useSelector((state) => state.movies.favouriteMovies);
   const moviesSearchStatus = useSelector((state) => state.movies.status);
 
   useEffect(() => {
@@ -22,7 +22,7 @@ const MoviesContainer = () => {
     }
   }, [searchedMovie, dispatch]);
 
-  const searchResults =
+  const searchMovieResults =
     movies.length > 0 ? (
       <MovieList movies={movies} favourites={FavoriteMovieLabel} />
     ) : (
@@ -32,14 +32,14 @@ const MoviesContainer = () => {
   return (
     <div>
       <header className="app-header">
-        <h1 className="main-title">Movies</h1>
+        <h2 className="main-title">Movies</h2>
         <SearchMovie value={searchedMovie} handler={onSearchedMovieChange} />
       </header>{" "}
       {moviesSearchStatus !== APPLICATION_STATUSES.initial && (
         <div className="wrapper">
           {/*ref={moviesContainer}*/}
           <div className="movies-container">
-            {searchResults}
+            {searchMovieResults}
             {/*<ScrollButtons moviesContainerRef={moviesContainer} />*/}
           </div>
         </div>
