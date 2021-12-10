@@ -1,4 +1,3 @@
-import FavoriteMovieLabel from "../FavoriteMovies/FavoriteMovieLabel";
 import MovieList from "./MovieList";
 import SearchMovie from "./SearchMovie";
 import { useDispatch, useSelector } from "react-redux";
@@ -13,7 +12,6 @@ const MoviesContainer = () => {
   const dispatch = useDispatch();
 
   const movies = useSelector((state) => state.movies.movies);
-  const favouriteMovies = useSelector((state) => state.movies.favouriteMovies);
   const moviesSearchStatus = useSelector((state) => state.movies.status);
 
   useEffect(() => {
@@ -24,7 +22,7 @@ const MoviesContainer = () => {
 
   const searchMovieResults =
     movies.length > 0 ? (
-      <MovieList movies={movies} favourites={FavoriteMovieLabel} />
+      <MovieList movies={movies} />
     ) : (
       <h2 className="movie-msg">{movies.length} movies were found:</h2>
     );
