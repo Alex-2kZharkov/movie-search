@@ -97,7 +97,7 @@ body {
 .movie-container:hover {
   cursor: pointer;
   transform: scale(1.5) translateY(13%);
-  transition: transform 0.25s ease-out;
+  transition: transform 0.2s ease-out;
   z-index: 1000;
 }
 .movie-container:first-child:hover {
