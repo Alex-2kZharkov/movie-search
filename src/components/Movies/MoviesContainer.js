@@ -1,5 +1,5 @@
 import MovieList from "./MovieList";
-import SearchMovie from "./SearchMovie";
+import SearchMovie from "./Search/SearchMovie";
 import { useDispatch, useSelector } from "react-redux";
 import { APPLICATION_STATUSES } from "../../utils/constants";
 import { useEffect, useRef, useState } from "react";
