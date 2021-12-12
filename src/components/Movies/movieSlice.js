@@ -1,6 +1,7 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { APPLICATION_STATUSES } from "../../utils/constants";
+import { getUniqueMovies } from "../../utils/helpers";
 
 const { createSlice } = require("@reduxjs/toolkit");
 const initialState = {
@@ -15,7 +16,8 @@ export const fetchMovies = createAsyncThunk(
     const response = await axios.get(
       `http://www.omdbapi.com/?s=${movieName}&apikey=21f59099`
     );
-    return response.data.Search ?? [];
+    const movies = response.data.Search ?? [];
+    return getUniqueMovies(movies);
   }
 );
 

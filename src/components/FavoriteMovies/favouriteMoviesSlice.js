@@ -1,8 +1,9 @@
+import { createSlice } from "@reduxjs/toolkit";
 import {
   getFavouriteMoviesFromLocalStorage,
+  getUniqueMovies,
   saveFavouriteMovieToLocalStorage,
-} from "../../helpers";
-import { createSlice } from "@reduxjs/toolkit";
+} from "../../utils/helpers";
 
 const initialState = getFavouriteMoviesFromLocalStorage();
 
@@ -12,8 +13,9 @@ const favouriteMoviesSlice = createSlice({
   reducers: {
     addMovieToFavourites(state, action) {
       const updatedFavouriteMovies = [...state, action.payload];
-      saveFavouriteMovieToLocalStorage(updatedFavouriteMovies);
-      return updatedFavouriteMovies;
+      const uniqueMovies = getUniqueMovies(updatedFavouriteMovies);
+      saveFavouriteMovieToLocalStorage(uniqueMovies);
+      return uniqueMovies;
     },
 
     removeMovieFromFavourites(state, action) {
