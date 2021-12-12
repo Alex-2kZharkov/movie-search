@@ -24,7 +24,7 @@ body {
   color: #ffffff;
 }
 .favourite-movies-title {
-  margin-left: 1rem;
+  margin-left: 0.7rem;
   margin-bottom: 1rem;
 }
 .movie-msg {
@@ -78,22 +78,11 @@ body {
   margin-right: 20px;
   transition: transform 0.2s ease-in-out;
 }
-.movie-information {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 1rem;
+.movie-container:first-child {
+  padding-left: 20px;
 }
-.movie-information__year {
-  font-size: 1.15rem;
-  font-weight: 300;
-}
-.movie-information__title {
-  margin-top: 0.5rem;
-  font-size: 1.5rem;
-  font-weight: 600;
-  text-align: center;
+.movie-container:last-child {
+  padding-right: 20px;
 }
 .movie-container:hover {
   cursor: pointer;
@@ -102,10 +91,10 @@ body {
   z-index: 1000;
 }
 .movie-container:last-child:hover {
-  transform: scale(1.5) translate(-20%, 13%);
+  transform: scale(1.5) translate(-10%, 13%);
 }
 .movie-container:first-child:hover {
-  transform: scale(1.5) translate(20%, 13%);
+  transform: scale(1.5) translate(8.5%, 13%);
 }
 
 .movie-container:hover .overlay {
@@ -133,9 +122,25 @@ body {
 .overlay:focus {
   outline: none;
 }
-
-.remove-favourites {
-  position: relative;
+.movie-information {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+.movie-information__year {
+  font-size: 1.15rem;
+  font-weight: 300;
+}
+.movie-information__title {
+  margin-top: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+}
+.favourite-label {
+  margin-bottom: 25px;
 }
 .icon, .remove-icon {
   position: relative;

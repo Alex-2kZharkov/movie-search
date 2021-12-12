@@ -3,7 +3,7 @@ import logo from "../../cancel.png";
 
 const RemoveFavourites = () => {
   return (
-    <span className="remove-favourites">
+    <span className="favourite-label">
       Remove from Favourites{" "}
       <img
         src={logo}
