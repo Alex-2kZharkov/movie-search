@@ -1,5 +1,6 @@
 import {
   getFavouriteMoviesFromLocalStorage,
+  getUniqueMovies,
   saveFavouriteMovieToLocalStorage,
 } from "./helpers";
 import { FAVOURITE_MOVIES_KEY } from "./constants";
@@ -49,6 +50,42 @@ describe("Unit tests", () => {
       const result = getFavouriteMoviesFromLocalStorage(FAVOURITE_MOVIES_KEY);
       expect(Array.isArray(result)).toBeTruthy();
       expect(result.length).toBe(0);
+    });
+  });
+  describe("Helper functions unit tests", () => {
+    it("should remove duplicated movies from array", () => {
+      const movies = [
+        {
+          Title: "Spider-man",
+          Year: "2000",
+          imdbID: "123",
+        },
+
+        {
+          Title: "Spider-man",
+          Year: "2000",
+          imdbID: "123",
+        },
+      ];
+      expect(getUniqueMovies(movies).length).toBe(1);
+    });
+    it("should not change array of unique movies", () => {
+      const movies = [
+        {
+          Title: "Spider-man",
+          Year: "2000",
+          imdbID: "123",
+        },
+
+        {
+          Title: "Spider-man2",
+          Year: "2004",
+          imdbID: "321",
+        },
+      ];
+      const [firstMovie, secondMovie] = getUniqueMovies(movies);
+      expect(firstMovie.imdbID).toBe("123");
+      expect(secondMovie.imdbID).toBe("321");
     });
   });
 });
