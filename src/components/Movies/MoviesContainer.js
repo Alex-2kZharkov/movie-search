@@ -2,10 +2,12 @@ import MovieList from "./MovieList";
 import SearchMovie from "./SearchMovie";
 import { useDispatch, useSelector } from "react-redux";
 import { APPLICATION_STATUSES } from "../../utils/constants";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { fetchMovies } from "./movieSlice";
+import ScrollButtons from "../ScrollButtons/ScrollButtons";
 
 const MoviesContainer = () => {
+  const moviesContainerRef = useRef(null);
   const [searchedMovie, setSearchedMovie] = useState("");
   const onSearchedMovieChange = (e) => setSearchedMovie(e.target.value);
 
@@ -28,18 +30,17 @@ const MoviesContainer = () => {
     );
 
   return (
-    <div>
+    <div style={{ position: "relative" }}>
       <header className="app-header">
         <h2 className="main-title">Movies</h2>
         <SearchMovie value={searchedMovie} handler={onSearchedMovieChange} />
       </header>{" "}
       {moviesSearchStatus !== APPLICATION_STATUSES.initial && (
-        <div className="wrapper">
-          {/*ref={moviesContainer}*/}
-          <div className="movies-container">
-            {searchMovieResults}
-            {/*<ScrollButtons moviesContainerRef={moviesContainer} />*/}
+        <div>
+          <div ref={moviesContainerRef} className="wrapper">
+            <div className="movies-container">{searchMovieResults}</div>
           </div>
+          <ScrollButtons moviesContainerRef={moviesContainerRef} />
         </div>
       )}
     </div>

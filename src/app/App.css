@@ -19,8 +19,8 @@ body {
 }
 .main-title, .movie-msg {
   margin-bottom: 0;
-  margin-top: 0px;
-  font-family: Roboto;
+  margin-top: 0;
+  font-family: Roboto, serif;
   color: #ffffff;
 }
 .favourite-movies-title {
@@ -42,13 +42,13 @@ body {
   padding: 10px 2px 10px 5px;
   border: solid 1px #ffffff;
   box-sizing: border-box;
-  font-family: Roboto;
+  font-family: Roboto, serif;
   font-size: 1.5rem;
   background-color: transparent;
   color: #ffffff;
 }
 .search-field::placeholder {
-  font-family: Roboto;
+  font-family: Roboto, serif;
   font-size: 16px;
 }
 .search-field:focus {
@@ -78,12 +78,7 @@ body {
   margin-right: 20px;
   transition: transform 0.2s ease-in-out;
 }
-.movie-container:first-child {
-  padding-left: 20px;
-}
-.movie-container:last-child {
-  padding-right: 20px;
-}
+
 .movie-container:hover {
   cursor: pointer;
   transform: scale(1.5) translateY(13%);
@@ -94,7 +89,7 @@ body {
   transform: scale(1.5) translate(-10%, 13%);
 }
 .movie-container:first-child:hover {
-  transform: scale(1.5) translate(8.5%, 13%);
+  transform: scale(1.5) translate(10%, 13%);
 }
 
 .movie-container:hover .overlay {
@@ -112,7 +107,7 @@ body {
   height: 15%;
   border: none;
   font-size: 14px;
-  font-family: Roboto;
+  font-family: Roboto, serif;
   opacity: 0;
   transition: opacity 0.2s ease-in-out;
   background-color: rgba(0, 0, 0, 0.7);
@@ -168,8 +163,9 @@ body {
 	flex-wrap: nowrap;
 }
 .arrow {
-  position: fixed;
-  top: 23%;
+  position: absolute;
+  z-index: 1000;
+  top: 35%;
   width: 80px;
   height: 120px;
   border: none;
@@ -195,7 +191,7 @@ body {
   transition: 0.2s ease-in-out box-shadow;
 }
 .arrow:hover::after, .arrow:hover::before {
-  box-shadow: 5px 0px 10px 5px  #ffffff;
+  box-shadow: 5px 0 10px 5px  #ffffff;
 }
 .arrow::after {
   bottom: 45px;
@@ -212,7 +208,7 @@ body {
   background: linear-gradient(to left, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 0.8) 100%);
 }
 .arrow-right {
-  right: 0px;
+  right: 0;
 }
 .arrow-right::before {
   left: 25px;
@@ -226,6 +222,6 @@ body {
   transition: 0.2s ease-in-out box-shadow;
 }
  .arrow-right:hover::before, .arrow-right:hover::after{
-    box-shadow: -5px 0px 10px 5px  #ffffff;
+    box-shadow: -5px 0 10px 5px  #ffffff;
 } 
 

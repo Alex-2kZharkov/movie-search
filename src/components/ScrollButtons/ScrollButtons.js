@@ -1,10 +1,9 @@
 import React from "react";
 import "../../app/App.css";
-const ScrollButtons = ({ moviesContainerRef, scrollButtonsOffset }) => {
+const ScrollButtons = ({ moviesContainerRef }) => {
   return (
     <>
       <button
-        style={scrollButtonsOffset}
         type="button"
         className="arrow arrow-left"
         onClick={() =>
@@ -12,7 +11,6 @@ const ScrollButtons = ({ moviesContainerRef, scrollButtonsOffset }) => {
         }
       />
       <button
-        style={scrollButtonsOffset}
         type="button"
         className="arrow arrow-right"
         onClick={() =>

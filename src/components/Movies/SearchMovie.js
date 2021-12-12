@@ -12,8 +12,7 @@ const styles = (theme) => ({
   },
 
   cssLabel: {
-    color: "white",
-    fontSize: "1.2rem",
+    color: "rgba(255,255,255,0.66)",
   },
 
   cssOutlinedInput: {
