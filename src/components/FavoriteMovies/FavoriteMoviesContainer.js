@@ -11,7 +11,7 @@ const FavoriteMoviesContainer = () => {
       </h2>
       <div className="wrapper">
         <div className="movies-container">
-          <MovieList movies={favouriteMovies} />
+          <MovieList movies={favouriteMovies} isFavouriteMoviesList />
         </div>
       </div>
     </div>

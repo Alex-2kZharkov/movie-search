@@ -86,12 +86,13 @@ body {
   margin-top: 1rem;
 }
 .movie-information__year {
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: 1.15rem;
+  font-weight: 300;
 }
 .movie-information__title {
   margin-top: 0.5rem;
-  font-size: 1.15rem;
+  font-size: 1.5rem;
+  font-weight: 600;
   text-align: center;
 }
 .movie-container:hover {
