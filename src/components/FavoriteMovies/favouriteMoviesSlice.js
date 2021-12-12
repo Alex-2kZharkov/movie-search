@@ -4,8 +4,9 @@ import {
   getUniqueMovies,
   saveFavouriteMovieToLocalStorage,
 } from "../../utils/helpers";
+import { FAVOURITE_MOVIES_KEY } from "../../utils/constants";
 
-const initialState = getFavouriteMoviesFromLocalStorage();
+const initialState = getFavouriteMoviesFromLocalStorage(FAVOURITE_MOVIES_KEY);
 
 const favouriteMoviesSlice = createSlice({
   name: "favouriteMovies",
@@ -14,7 +15,7 @@ const favouriteMoviesSlice = createSlice({
     addMovieToFavourites(state, action) {
       const updatedFavouriteMovies = [...state, action.payload];
       const uniqueMovies = getUniqueMovies(updatedFavouriteMovies);
-      saveFavouriteMovieToLocalStorage(uniqueMovies);
+      saveFavouriteMovieToLocalStorage(FAVOURITE_MOVIES_KEY, uniqueMovies);
       return uniqueMovies;
     },
 
@@ -22,7 +23,10 @@ const favouriteMoviesSlice = createSlice({
       const updatedFavouriteMovies = state.filter(
         (movie) => movie.imdbID !== action.payload.imdbID
       );
-      saveFavouriteMovieToLocalStorage(updatedFavouriteMovies);
+      saveFavouriteMovieToLocalStorage(
+        FAVOURITE_MOVIES_KEY,
+        updatedFavouriteMovies
+      );
       return updatedFavouriteMovies;
     },
   },

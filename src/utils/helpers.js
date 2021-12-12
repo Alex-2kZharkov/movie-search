@@ -1,9 +1,5 @@
-import { FAVOURITE_MOVIES_KEY } from "./constants";
-
-export const getFavouriteMoviesFromLocalStorage = () => {
-  const favouriteMovies = JSON.parse(
-    localStorage.getItem(FAVOURITE_MOVIES_KEY)
-  );
+export const getFavouriteMoviesFromLocalStorage = (key) => {
+  const favouriteMovies = JSON.parse(window.localStorage.getItem(key));
   return favouriteMovies ? favouriteMovies : [];
 };
 
@@ -15,6 +11,6 @@ export const getUniqueMovies = (movies) => {
   );
 };
 
-export const saveFavouriteMovieToLocalStorage = (movies) => {
-  window.localStorage.setItem(FAVOURITE_MOVIES_KEY, JSON.stringify(movies));
+export const saveFavouriteMovieToLocalStorage = (key, movies) => {
+  localStorage.setItem(key, JSON.stringify(movies));
 };
