@@ -40,7 +40,9 @@ const MoviesContainer = () => {
           <div ref={moviesContainerRef} className="wrapper">
             <div className="movies-container">{searchMovieResults}</div>
           </div>
-          <ScrollButtons moviesContainerRef={moviesContainerRef} />
+          {movies.length && (
+            <ScrollButtons moviesContainerRef={moviesContainerRef} />
+          )}
         </div>
       )}
     </div>

@@ -62,7 +62,11 @@ describe("Integration tests", () => {
       });
 
       const searchResults = await screen.findByText("Spider-Man");
+      const scrollButtons = await screen.findAllByRole("button", {
+        class: "arrow",
+      });
       expect(searchResults).toBeInTheDocument();
+      expect(Array.isArray(scrollButtons)).toBeTruthy();
     });
 
     it("should not find any movies when movie name is incorrect", async () => {
