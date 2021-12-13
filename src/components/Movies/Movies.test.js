@@ -5,6 +5,8 @@ import App from "../../app/App";
 import React from "react";
 import { render, unmountComponentAtNode } from "react-dom";
 import { act } from "react-dom/test-utils";
+import { FAVOURITE_MOVIES_KEY } from "../../utils/constants";
+import FavoriteMoviesContainer from "../FavoriteMovies/FavoriteMoviesContainer";
 
 let container = null;
 
@@ -128,6 +130,36 @@ describe("Integration tests", () => {
           await screen.findAllByText("Spider-Man");
         expect(stillFirstFavouriteMovie).toBeInTheDocument();
         expect(secondFavouriteMovie).toBeFalsy();
+      });
+    });
+
+    describe("Removing from favourite movies", () => {
+      it("should remove movie from list of favourite movies", async () => {
+        const movie = {
+          Title: "Spider-Man",
+          Year: "2002",
+          imdbID: "tt0145487",
+          Type: "movie",
+          Poster:
+            "https://m.media-amazon.com/images/M/MV5BZDEyN2NhMjgtMjdhNi00MmNlLWE5YTgtZGE4MzNjMTRlMGEwXkEyXkFqcGdeQXVyNDUyOTg3Njg@._V1_SX300.jpg",
+        };
+        localStorage.setItem(FAVOURITE_MOVIES_KEY, movie);
+        console.log(localStorage);
+        act(() => {
+          render(
+            <Provider store={store}>
+              <FavoriteMoviesContainer />
+            </Provider>,
+            container
+          );
+        });
+        const buttons = await screen.findAllByRole("button");
+        act(() => {
+          fireEvent.click(buttons[0]);
+        });
+
+        const favouriteMovie = screen.queryByText("Spider-Man");
+        expect(favouriteMovie).toBeFalsy();
       });
     });
   });
