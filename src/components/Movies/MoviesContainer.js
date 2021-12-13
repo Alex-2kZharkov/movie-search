@@ -30,7 +30,7 @@ const MoviesContainer = () => {
     );
 
   return (
-    <div style={{ position: "relative" }}>
+    <div style={{ position: "relative" }} className="movies-list-container">
       <header className="app-header">
         <h2 className="main-title">Movies</h2>
         <SearchMovie value={searchedMovie} handler={onSearchedMovieChange} />

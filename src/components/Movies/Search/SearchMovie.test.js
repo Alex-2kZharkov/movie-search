@@ -24,17 +24,6 @@ describe("UI tests", () => {
     expect(h2).toBeInTheDocument();
   });
 
-  it("should not render favourite movies component, cause of empty localStorage", () => {
-    const { container } = render(
-      <Provider store={store}>
-        <App />
-      </Provider>
-    );
-    expect(
-      container.querySelector(".favourite-movies-title")
-    ).not.toBeInTheDocument();
-  });
-
   it("should render empty favourite movies component", () => {
     const { container } = render(
       <Provider store={store}>

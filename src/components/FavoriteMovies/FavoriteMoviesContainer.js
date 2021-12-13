@@ -9,7 +9,10 @@ const FavoriteMoviesContainer = () => {
   const moviesContainerRef = useRef(null);
 
   return (
-    <div style={{ position: "relative" }}>
+    <div
+      style={{ position: "relative" }}
+      className="favourite-movies-list-container"
+    >
       <h2 className="main-title favourite-movies-title">
         Your favourites movies:
       </h2>
