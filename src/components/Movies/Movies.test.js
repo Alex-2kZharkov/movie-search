@@ -62,7 +62,25 @@ describe("Integration tests", () => {
       });
 
       const searchResults = await screen.findByText("Spider-Man");
-      expect(searchResults).not.toBeEmptyDOMElement();
+      expect(searchResults).toBeInTheDocument();
+    });
+
+    it("should not find any movies when movie name is incorrect", async () => {
+      act(() => {
+        render(
+          <Provider store={store}>
+            <App />
+          </Provider>,
+          container
+        );
+      });
+      const input = document.querySelector("input");
+      act(() => {
+        fireEvent.change(input, { target: { value: "!!!" } });
+      });
+
+      const searchMessage = await screen.findByText("0 movies were found:");
+      expect(searchMessage).toBeInTheDocument();
     });
   });
 });
