@@ -1,4 +1,4 @@
-import { fireEvent, screen } from "@testing-library/react";
+import { fireEvent, screen, waitFor } from "@testing-library/react";
 import { Provider } from "react-redux";
 import store from "../../app/store";
 import App from "../../app/App";
@@ -20,30 +20,32 @@ afterEach(() => {
 });
 
 describe("Integration tests", () => {
-  it("should render root App component without errors", () => {
-    act(() => {
-      render(
-        <Provider store={store}>
-          <App />
-        </Provider>,
-        container
-      );
+  describe("Rendering complex components", () => {
+    it("should render root App component without errors", () => {
+      act(() => {
+        render(
+          <Provider store={store}>
+            <App />
+          </Provider>,
+          container
+        );
+      });
+      expect(document.querySelector(".app-container")).toBeInTheDocument();
     });
-    expect(document.querySelector(".app-container")).toBeInTheDocument();
-  });
 
-  it("should not render favourite movies component, cause of empty localStorage", () => {
-    act(() => {
-      render(
-        <Provider store={store}>
-          <App />
-        </Provider>,
-        container
-      );
+    it("should not render favourite movies component, cause of empty localStorage", () => {
+      act(() => {
+        render(
+          <Provider store={store}>
+            <App />
+          </Provider>,
+          container
+        );
+      });
+      expect(
+        document.querySelector(".favourite-movies-title")
+      ).not.toBeInTheDocument();
     });
-    expect(
-      document.querySelector(".favourite-movies-title")
-    ).not.toBeInTheDocument();
   });
 
   describe("Searching movies", () => {
@@ -85,6 +87,48 @@ describe("Integration tests", () => {
 
       const searchMessage = await screen.findByText("0 movies were found:");
       expect(searchMessage).toBeInTheDocument();
+    });
+  });
+
+  describe("Favourite movies", () => {
+    describe("Adding to favourite movies", () => {
+      it("should movie to favourite movies list", async () => {
+        act(() => {
+          render(
+            <Provider store={store}>
+              <App />
+            </Provider>,
+            container
+          );
+        });
+        const input = document.querySelector("input");
+        act(() => {
+          fireEvent.change(input, { target: { value: "Spider-Man" } });
+        });
+
+        const [firstMovieButton] = await screen.findAllByRole("button");
+
+        act(() => {
+          fireEvent.click(firstMovieButton);
+        });
+
+        const favouriteMoviesHeader = await screen.findByText(
+          "Your favourites movies:"
+        );
+        const [, firstFavouriteMovie] = await screen.findAllByText(
+          "Spider-Man"
+        );
+        expect(favouriteMoviesHeader).toBeInTheDocument();
+        expect(firstFavouriteMovie).toBeInTheDocument();
+
+        act(() => {
+          fireEvent.click(firstMovieButton);
+        });
+        const [, stillFirstFavouriteMovie, secondFavouriteMovie] =
+          await screen.findAllByText("Spider-Man");
+        expect(stillFirstFavouriteMovie).toBeInTheDocument();
+        expect(secondFavouriteMovie).toBeFalsy();
+      });
     });
   });
 });
