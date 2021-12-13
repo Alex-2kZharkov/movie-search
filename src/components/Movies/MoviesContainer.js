@@ -5,11 +5,12 @@ import { APPLICATION_STATUSES } from "../../utils/constants";
 import { useEffect, useRef, useState } from "react";
 import { fetchMovies } from "./movieSlice";
 import ScrollButtons from "../ScrollButtons/ScrollButtons";
+import xss from "xss";
 
 const MoviesContainer = () => {
   const moviesContainerRef = useRef(null);
   const [searchedMovie, setSearchedMovie] = useState("");
-  const onSearchedMovieChange = (e) => setSearchedMovie(e.target.value);
+  const onSearchedMovieChange = (e) => setSearchedMovie(xss(e.target.value));
 
   const dispatch = useDispatch();
 

@@ -15,7 +15,8 @@
     "react-redux": "^7.2.6",
     "react-scripts": "4.0.1",
     "styled-components": "^5.3.3",
-    "web-vitals": "^0.2.4"
+    "web-vitals": "^0.2.4",
+    "xss": "^1.0.10"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -1,4 +1,4 @@
-import { fireEvent, screen, waitFor } from "@testing-library/react";
+import { fireEvent, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 import store from "../../app/store";
 import App from "../../app/App";
@@ -144,7 +144,7 @@ describe("Integration tests", () => {
             "https://m.media-amazon.com/images/M/MV5BZDEyN2NhMjgtMjdhNi00MmNlLWE5YTgtZGE4MzNjMTRlMGEwXkEyXkFqcGdeQXVyNDUyOTg3Njg@._V1_SX300.jpg",
         };
         localStorage.setItem(FAVOURITE_MOVIES_KEY, movie);
-        console.log(localStorage);
+
         act(() => {
           render(
             <Provider store={store}>
